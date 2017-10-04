@@ -6,6 +6,7 @@
     "axios": "^0.16.2",
     "install": "^0.10.1",
     "react": "^16.0.0",
+    "react-axios": "^1.0.3",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14",
     "semantic-ui-css": "^2.2.12",
