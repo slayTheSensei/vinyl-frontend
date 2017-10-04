@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LoginForm from './components/Signin.js'
+import {
+  BrowserRouter,
+  Route
+} from 'react-router-dom'
+
+// importing components
+import SignUpForm from './components/login/Sign-up.js'
+import SignInForm from './components/login/Sign-in.js'
 
 class App extends Component {
-state = {
-  email: '',
-  password:'',
-  password_confirm: '',
-}
-
   render() {
 
     return (
-      <div className="App">
-        <LoginForm />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Route exact path="/" component={SignUpForm} />
+          <Route path="/sign-in" component={SignInForm} />
+        </div>
+      </BrowserRouter>
+
     );
   }
 }

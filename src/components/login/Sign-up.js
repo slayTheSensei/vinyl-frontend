@@ -1,32 +1,38 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import  { Link } from 'react-router-dom'
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   constructor(props) {
   super(props)
     this.state = {
       email: '',
       password:'',
       password_digest: '',
+      role: '',
   }
   this.onChange = this.onChange.bind(this)
   this.onSubmit = this.onSubmit.bind(this)
 }
 
+// listens for changes and field and changes state
 onChange = (e) => {
   this.setState({
     [e.target.name]: e.target.value,
   })
 }
 
+// Submits credentials to api
 onSubmit = () => {
   console.log("submited")
+  // pust json data into data variable
   let data = {
     credentials: {
       email: this.state.email,
       password: this.state.password,
-      password_confirmation: this.state.password_digest
+      password_confirmation: this.state.password_digest,
+      role: this.state.role
     }
   }
   console.log(data)
@@ -64,7 +70,7 @@ onSubmit = () => {
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='teal' textAlign='center'>
           <Image src='/logo.png' />
-          {' '}Log-in to your account
+          {' '}Sign-up for a new account
         </Header>
         <Form size='large'>
           <Segment stac ked>
@@ -97,12 +103,21 @@ onSubmit = () => {
               value={this.state.password_digest}
               onChange={e => this.onChange(e)}
             />
+            <Form.Input
+              fluid
+              icon='lock'
+              iconPosition='left'
+              name="role"
+              placeholder='Admin or Host?'
+              value={this.state.role}
+              onChange={e => this.onChange(e)}
+            />
 
-          <Button color='teal' fluid size='large' onClick={() => this.onSubmit()}>Login</Button>
+          <Button color='teal' fluid size='large' onClick={() => this.onSubmit()}>Sign up</Button>
           </Segment>
         </Form>
         <Message>
-          New to us? <a href='#'>Sign Up</a>
+          Already apart of vinyl? <a href='/sign-in'>login here</a>
         </Message>
       </Grid.Column>
     </Grid>
@@ -110,4 +125,4 @@ onSubmit = () => {
 )
 }
 }
-export default LoginForm
+export default SignUpForm
