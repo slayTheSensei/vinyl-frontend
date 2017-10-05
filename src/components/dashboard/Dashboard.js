@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Card } from 'semantic-ui-react'
 import axios from 'axios'
 import ArtistList from './views/ArtistList.js'
+import Sidebar_nav from './Sidebar_nav.js'
+import {
+  BrowserRouter,
+  Route
+} from 'react-router-dom'
 
 class Dashboard extends Component {
   constructor() {
@@ -34,18 +39,7 @@ componentDidMount() {
         <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
         <Sidebar.Pushable as={Segment} >
           <Sidebar as={Menu} animation='uncover' width='thin' visible={visible} icon='labeled' vertical inverted>
-            <Menu.Item name='home'>
-              <Icon name='home' />
-              Home
-            </Menu.Item>
-            <Menu.Item name='ticket'>
-              <Icon name='ticket' />
-              Events
-            </Menu.Item>
-            <Menu.Item name='options'>
-              <Icon name='options' />
-              Artists
-            </Menu.Item>
+            <Sidebar_nav />
           </Sidebar>
           <Sidebar.Pusher className="side">
             <Segment basic>
