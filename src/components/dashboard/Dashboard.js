@@ -1,12 +1,34 @@
 import React, { Component } from 'react'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Card } from 'semantic-ui-react'
+import axios from 'axios'
+import ArtistList from './views/ArtistList.js'
 
 class Dashboard extends Component {
+  constructor() {
+  super();
+  this.state = {
+    artists: []
+  };
+}
+
+componentDidMount() {
+  axios.get('http://localhost:4741/artists')
+.then(response => {
+  this.setState({
+    artists: response.data.artists
+  })
+})
+.catch(error => {
+  console.log('Error fetching and parsing data', error);
+});
+}
+
   state = { visible: true }
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
+    console.log(this.state.artists)
     const { visible } = this.state
     return (
       <div className="app">
@@ -17,40 +39,21 @@ class Dashboard extends Component {
               <Icon name='home' />
               Home
             </Menu.Item>
-            <Menu.Item name='gamepad'>
-              <Icon name='gamepad' />
-              Games
+            <Menu.Item name='ticket'>
+              <Icon name='ticket' />
+              Events
             </Menu.Item>
-            <Menu.Item name='camera'>
-              <Icon name='camera' />
-              Channels
+            <Menu.Item name='options'>
+              <Icon name='options' />
+              Artists
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher className="side">
             <Segment basic>
               <Header as='h2'>All Available Artists</Header>
-                <Card>
-                  <Image src='https://react.semantic-ui.com/assets/images/avatar/large/matthew.png' />
-                  <Card.Content>
-                    <Card.Header>
-                      Matthew
-                    </Card.Header>
-                    <Card.Meta>
-                      <span className='date'>
-                        Joined in 2015
-                      </span>
-                    </Card.Meta>
-                    <Card.Description>
-                      Matthew is a musician living in Nashville.
-                    </Card.Description>
-                  </Card.Content>
-                  <Card.Content extra>
-                    <a>
-                      <Icon name='user' />
-                      22 Friends
-                    </a>
-                  </Card.Content>
-                </Card>
+
+            <ArtistList data={this.state.artists}/>
+
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
