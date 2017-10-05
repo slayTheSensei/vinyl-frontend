@@ -12,8 +12,6 @@ import SignInForm from './components/login/Sign-in.js'
 import Dashboard from './components/dashboard/Dashboard.js'
 
 class App extends Component {
-  
-
 
   render() {
 
@@ -25,7 +23,6 @@ class App extends Component {
           <Route path="/dashboard" component={Dashboard} />
         </div>
       </BrowserRouter>
-
     );
   }
 }

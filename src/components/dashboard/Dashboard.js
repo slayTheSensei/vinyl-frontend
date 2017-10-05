@@ -7,7 +7,8 @@ class Dashboard extends Component {
   constructor() {
   super();
   this.state = {
-    artists: []
+    artists: [],
+    visible: true
   };
 }
 
@@ -22,8 +23,6 @@ componentDidMount() {
   console.log('Error fetching and parsing data', error);
 });
 }
-
-  state = { visible: true }
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
