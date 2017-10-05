@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css'
+
 .App {
   text-align: center;
 }
@@ -20,6 +22,14 @@
 
 .App-intro {
   font-size: large;
+}
+
+.side {
+  height: 850px
+}
+
+.main {
+  background-color: gray
 }
 
 @keyframes App-logo-spin {
