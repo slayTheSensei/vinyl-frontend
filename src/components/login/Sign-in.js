@@ -39,7 +39,6 @@ onSubmit = () => {
   }
   axios.post('http://localhost:4741/sign-in/', data)
   .then(function (response) {
-    let self = this
     console.log(response);
     // add token to local storage for authenicated requests
     console.log(response.data.user.token)
