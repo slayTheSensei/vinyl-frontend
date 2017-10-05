@@ -30,6 +30,7 @@ onChange = (e) => {
 
 // Submits credentials to api
 onSubmit = () => {
+  let self = this
   // pust json data into data variable
   let data = {
     credentials: {
@@ -42,14 +43,17 @@ onSubmit = () => {
     console.log(response);
     // add token to local storage for authenicated requests
     console.log(response.data.user.token)
-    console.log(this.state)
-
+    console.log(response.data.user.id)
+    self.props.data(response.data.user.token, response.data.user.id )
+    console.log(self)
+    // this.props.data.
   })
-
-  .then(this.props.history.push('/dashboard'))
+  // .then(this.props.history.push('/dashboard'))
   .catch(function (error) {
     console.log(error);
-  });
+  })
+
+console.log(this)
 }
 
   render() {

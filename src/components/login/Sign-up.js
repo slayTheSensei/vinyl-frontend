@@ -41,7 +41,7 @@ onSubmit = () => {
     console.log(response);
 
   })
-  .then(this.props.history.push('/dashboard'))
+  .then(this.props.history.push('/sign-in'))
   .catch(function (error) {
     console.log(error);
   })

@@ -34,8 +34,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route path="/" render={ () => <SignInForm data={this.setToken} />} />
-          <Route path="/dashboard" render={ () => <Dashboard data={this.setToken} />} />
+          <Route exact path="/" render={ () => <SignUpForm />} />
+          <Route path="/sign-in" render={ () => <SignInForm data={this.setToken} />} />
+          <Route path="/dashboard" render={ () => <Dashboard data={this.state} />} />
         </div>
       </BrowserRouter>
     );
