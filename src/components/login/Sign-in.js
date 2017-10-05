@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import  { Link } from 'react-router-dom'
+import  { Link, Redirect, Route} from 'react-router-dom'
 
 class SignInForm extends Component {
   constructor(props) {
@@ -23,7 +23,6 @@ onChange = (e) => {
 
 // Submits credentials to api
 onSubmit = () => {
-  console.log("submited")
   // pust json data into data variable
   let data = {
     credentials: {
@@ -31,11 +30,14 @@ onSubmit = () => {
       password: this.state.password
     }
   }
-  console.log(data)
   axios.post('http://localhost:4741/sign-in/', data)
   .then(function (response) {
     console.log(response);
+    // add token to local storage for authenicated requests
+    console.log(response.data.user.token)
   })
+
+  .then(this.props.history.push('/dashboard'))
   .catch(function (error) {
     console.log(error);
   });

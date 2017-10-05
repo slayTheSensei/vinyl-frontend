@@ -42,7 +42,7 @@ onSubmit = () => {
   })
   .catch(function (error) {
     console.log(error);
-  });
+  })
 }
 
   render() {
