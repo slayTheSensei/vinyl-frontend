@@ -8,7 +8,8 @@ class SignInForm extends Component {
   super(props)
     this.state = {
       email: '',
-      password:'',
+      password: '',
+      token: ''
   }
   this.onChange = this.onChange.bind(this)
   this.onSubmit = this.onSubmit.bind(this)
@@ -21,6 +22,12 @@ onChange = (e) => {
   })
 }
 
+// setToken = () => {
+//   this.setState({
+//     token: response.data.user.token
+//   })
+// }
+
 // Submits credentials to api
 onSubmit = () => {
   // pust json data into data variable
@@ -32,9 +39,12 @@ onSubmit = () => {
   }
   axios.post('http://localhost:4741/sign-in/', data)
   .then(function (response) {
+    let self = this
     console.log(response);
     // add token to local storage for authenicated requests
     console.log(response.data.user.token)
+    console.log(this.state)
+
   })
 
   .then(this.props.history.push('/dashboard'))

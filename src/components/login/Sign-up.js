@@ -39,7 +39,9 @@ onSubmit = () => {
   axios.post('http://localhost:4741/sign-up/', data)
   .then(function (response) {
     console.log(response);
+
   })
+  .then(this.props.history.push('/dashboard'))
   .catch(function (error) {
     console.log(error);
   })
