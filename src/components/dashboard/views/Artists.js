@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon, Image, Button } from 'semantic-ui-react'
 import axios from 'axios'
 
 
@@ -19,12 +19,9 @@ const Artist = props => (
         {props.name} is a DJ living in Providence.
       </Card.Description>
     </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        22 Friends
-      </a>
-    </Card.Content>
+
+      <Button positive attached='bottom'>Add to Event</Button>
+
   </Card>
 );
 

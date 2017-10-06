@@ -7,7 +7,7 @@ const EventsList = props => {
 
 const results = props.data;
 let events = results.map(event =>
-  <Events name={event.name} id={event.id} />
+  <Events name={event.name} id={event.id} venue={event.venue} />
 )
 
   return(

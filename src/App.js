@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {
   BrowserRouter,
-  Route
+  Route,
 } from 'react-router-dom'
 
 // importing components

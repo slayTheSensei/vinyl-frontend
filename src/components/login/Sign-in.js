@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-
 class SignInForm extends Component {
   constructor(props) {
   super(props)
@@ -46,12 +46,12 @@ onSubmit = () => {
     self.props.data(response.data.user.token, response.data.user.id )
     // this.props.data.
   })
-  // .then(this.props.history.push('/dashboard'))
+  // .then(history.push('/dashboard'))
   .catch(function (error) {
     console.log(error);
   })
 
-console.log(this.props)
+console.log(this)
 }
 
   render() {
@@ -109,6 +109,7 @@ console.log(this.props)
         <Message>
           New to us? <a href='/'>Sign Up</a>
         </Message>
+        <Link to="/dashboard">Continue</Link>
       </Grid.Column>
     </Grid>
   </div>

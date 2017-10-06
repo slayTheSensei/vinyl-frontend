@@ -7,7 +7,6 @@ class Events extends Component {
 
   deleteEvents = () => {
     let self = this
-    console.log(self.props.id)
     let data = {
         id: self.props.id
     }
@@ -15,8 +14,6 @@ class Events extends Component {
     axios.delete('http://localhost:4741/events/' + self.props.id, data)
     .then(function (response) {
       console.log(response);
-      console.log(response.data.user.token)
-      console.log(self.props.id)
     })
     .catch(function (error) {
       console.log(error)
@@ -31,15 +28,15 @@ render() {
       <Item.Content>
         <Item.Header as='a'>{this.props.name}</Item.Header>
         <Item.Meta>
-          <span className='cinema'>Zeke Speakeasy</span>
+          <span className='cinema'>{this.props.venue}</span>
         </Item.Meta>
         <Item.Description>Warehouse party at an undisclosed location</Item.Description>
         <Item.Extra>
-          <Label>{}</Label>
-          <Label icon='globe' content='Additional Languages' />
+          <Label>{this.props.artists}</Label>
+          <Label content='Live Music' />
         </Item.Extra>
         <Button primary size="mini" onClick={() => this.deleteEvents()}>
-          Complete Event
+          Delete Event
           <Icon name='right chevron' />
         </Button>
       </Item.Content>

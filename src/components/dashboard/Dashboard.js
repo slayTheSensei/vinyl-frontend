@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Container } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Menu, Container, Item, Header } from 'semantic-ui-react'
 import axios from 'axios'
+
 import {
   Route
 } from 'react-router-dom'
@@ -8,6 +9,7 @@ import {
 // importing components
 import ArtistList from './views/ArtistList.js'
 import EventsList from './views/EventsList.js'
+import Events from './views/Events.js'
 import Sidebar_nav from './Sidebar_nav.js'
 
 class Dashboard extends Component {
@@ -16,12 +18,21 @@ class Dashboard extends Component {
   this.state = {
     artists: [],
     events: [],
-    visible: true,
+    user_events: [],
+    visible: true
   };
 }
 
 // API calls are done in componentDidMount
 componentDidMount() {
+  let self = this
+let userToken =this.props.data.token
+  let auth = {
+    headers: {
+        "Authorization" : 'Token ' + userToken
+      }
+    }
+  let user = this.props.user_id
   // GET Artists
   axios.get('http://localhost:4741/artists')
     .then(response => {
@@ -33,7 +44,6 @@ componentDidMount() {
     console.log('Error fetching and parsing data', error)
   })
 
-
 // GET Events
   axios.get('http://localhost:4741/events')
     .then(response => {
@@ -44,58 +54,32 @@ componentDidMount() {
   .catch(error => {
     console.log('Error fetching and parsing data', error)
   })
-  console.log(this.props)
+
+// GET User Events
+  axios.get('http://localhost:4741/users/' + 2, auth)
+    .then(response => {
+    this.setState({
+      user_events: response.data.user.events
+    })
+    // console.log(response.data.user.events)
+  })
+  .catch(error => {
+    console.log('Error fetching and parsing data', error)
+  })
 }
-
-// Update Events
-updateEvents = () => {
-  let data = {
-    credentials: {
-      email: this.state.email,
-    }
-  }
-
-  axios.patch('http://localhost:4741/sign-in/', data)
-  .then(function (response) {
-    console.log(response);
-    console.log(response.data)
-    console.log(response.data)
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-
-console.log(this.props)
-}
-
-// Update Events
-deleteEvents = () => {
-  let self = this
-
-  let data = {
-    credentials: {
-      email: this.state.email,
-    }
-  }
-
-  axios.patch('http://localhost:4741/sign-in/', data)
-  .then(function (response) {
-    console.log(response);
-    console.log(response.data)
-    console.log(response.data)
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-
-console.log(this.props)
-}
-
-
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
+
+
   render() {
-    console.log(this.state.artists)
     const { visible } = this.state
+
+    const results = this.state.user_events;
+    console.log(results)
+
+    let events = results.map(event =>
+      <Events name={event.name} id={event.id} venue={event.venue} />
+    )
+
     return (
       <div className="app">
 
@@ -116,6 +100,10 @@ console.log(this.props)
             <Segment basic>
                 <Route path="/dashboard/events" render={ () => <EventsList data={this.state.events} />} />
                 <Route path="/dashboard/artists" render={ () => <ArtistList data={this.state.artists} />} />
+                  <Header as='h2'>My Events</Header>
+                  <Item.Group>
+                    {events}
+                  </Item.Group>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
