@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Card } from 'semantic-ui-react'
-import axios from 'axios'
+import { Menu, Icon, Item, Card } from 'semantic-ui-react'
 import {
-  BrowserRouter,
-  Route,
   Link
 } from 'react-router-dom'
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Card } from 'semantic-ui-react'
+import { Header, Card } from 'semantic-ui-react'
 import axios from 'axios'
 import Artists from './Artists.js'
 

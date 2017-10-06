@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Card, Item, Label, Container } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Menu, Container } from 'semantic-ui-react'
 import axios from 'axios'
 import {
-  BrowserRouter,
   Route
 } from 'react-router-dom'
 
@@ -17,7 +16,7 @@ class Dashboard extends Component {
   this.state = {
     artists: [],
     events: [],
-    visible: true
+    visible: true,
   };
 }
 
@@ -33,6 +32,8 @@ componentDidMount() {
   .catch(error => {
     console.log('Error fetching and parsing data', error)
   })
+
+
 // GET Events
   axios.get('http://localhost:4741/events')
     .then(response => {
@@ -45,6 +46,51 @@ componentDidMount() {
   })
   console.log(this.props)
 }
+
+// Update Events
+updateEvents = () => {
+  let data = {
+    credentials: {
+      email: this.state.email,
+    }
+  }
+
+  axios.patch('http://localhost:4741/sign-in/', data)
+  .then(function (response) {
+    console.log(response);
+    console.log(response.data)
+    console.log(response.data)
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+
+console.log(this.props)
+}
+
+// Update Events
+deleteEvents = () => {
+  let self = this
+
+  let data = {
+    credentials: {
+      email: this.state.email,
+    }
+  }
+
+  axios.patch('http://localhost:4741/sign-in/', data)
+  .then(function (response) {
+    console.log(response);
+    console.log(response.data)
+    console.log(response.data)
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+
+console.log(this.props)
+}
+
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
   render() {

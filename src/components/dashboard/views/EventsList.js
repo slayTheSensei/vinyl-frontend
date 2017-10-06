@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Card, Item } from 'semantic-ui-react'
+import { Item, Header } from 'semantic-ui-react'
 import axios from 'axios'
 import Events from './Events.js'
 
@@ -7,7 +7,7 @@ const EventsList = props => {
 
 const results = props.data;
 let events = results.map(event =>
-  <Events name={event.name} />
+  <Events name={event.name} id={event.id} />
 )
 
   return(
