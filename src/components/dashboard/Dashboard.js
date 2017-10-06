@@ -3,7 +3,8 @@ import { Sidebar, Segment, Button, Menu, Container, Item, Header } from 'semanti
 import axios from 'axios'
 
 import {
-  Route
+  Route,
+  Link
 } from 'react-router-dom'
 
 // importing components
@@ -26,13 +27,13 @@ class Dashboard extends Component {
 // API calls are done in componentDidMount
 componentDidMount() {
   let self = this
-let userToken =this.props.data.token
+let userToken = this.props.data.token
   let auth = {
     headers: {
         "Authorization" : 'Token ' + userToken
       }
     }
-  let user = this.props.user_id
+  let user = self.props.data.user_id
   // GET Artists
   axios.get('http://localhost:4741/artists')
     .then(response => {
@@ -56,7 +57,7 @@ let userToken =this.props.data.token
   })
 
 // GET User Events
-  axios.get('http://localhost:4741/users/' + 2, auth)
+  axios.get('http://localhost:4741/users/' + user, auth)
     .then(response => {
     this.setState({
       user_events: response.data.user.events
@@ -66,7 +67,33 @@ let userToken =this.props.data.token
   .catch(error => {
     console.log('Error fetching and parsing data', error)
   })
+
 }
+
+// Sign Out
+signOut = () => {
+  let self = this
+
+  let userToken = this.props.data.token
+
+  let user = this.props.data.user_id
+  console.log(user)
+
+  let auth = {
+    headers: {
+        "Authorization" : 'Token ' + userToken
+      }
+    }
+
+axios.delete('http://localhost:4741/sign-out/' + user, auth)
+  .then(response => {
+  console.log(response)
+})
+.catch(error => {
+  console.log('Error fetching and parsing data', error)
+})
+}
+
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
 
@@ -81,13 +108,13 @@ let userToken =this.props.data.token
     )
 
     return (
-      <div className="app">
+      <div className="app side">
 
       <Menu attached='top'>
         <Container>
         </Container>
         <Menu.Item>
-          <Button primary>Sign Out</Button>
+          <Button primary onClick={() => this.signOut()}><Link to="/">Sign Out</Link></Button>
         </Menu.Item>
       </Menu>
 

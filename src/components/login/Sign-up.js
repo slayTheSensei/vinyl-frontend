@@ -40,7 +40,7 @@ onSubmit = () => {
     console.log(response);
 
   })
-  .then(this.props.history.push('/sign-in'))
+  // .then(this.props.history.push('/sign-in'))
   .catch(function (error) {
     console.log(error);
   })
