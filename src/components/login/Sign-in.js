@@ -45,7 +45,6 @@ onSubmit = () => {
     console.log(response.data.user.token)
     console.log(response.data.user.id)
     self.props.data(response.data.user.token, response.data.user.id )
-    console.log(self)
     // this.props.data.
   })
   // .then(this.props.history.push('/dashboard'))
@@ -53,7 +52,7 @@ onSubmit = () => {
     console.log(error);
   })
 
-console.log(this)
+console.log(this.props)
 }
 
   render() {

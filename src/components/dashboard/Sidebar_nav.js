@@ -1,24 +1,29 @@
 import React, { Component } from 'react'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Card } from 'semantic-ui-react'
 import axios from 'axios'
+import {
+  BrowserRouter,
+  Route,
+  Link
+} from 'react-router-dom'
 
 
 const Sidebar_nav = props => {
 
   return(
     <div>
-    <Menu.Item name='home'>
+    <Menu.Item name='home'><Link to="/dashboard">
       <Icon name='home' />
       Home
-    </Menu.Item>
-    <Menu.Item name='ticket'>
+    </Link></Menu.Item>
+    <Menu.Item name='ticket'><Link to="/dashboard/events">
       <Icon name='ticket' />
       Events
-    </Menu.Item>
-    <Menu.Item name='options'>
+    </Link></Menu.Item>
+    <Menu.Item name='options'><Link to="/dashboard/artists">
       <Icon name='options' />
       Artists
-    </Menu.Item>
+    </Link></Menu.Item>
     </div>
   );
 }

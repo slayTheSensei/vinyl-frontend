@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 const Artist = props => (
-  <Card>
+  <Card small>
     <Image src='https://react.semantic-ui.com/assets/images/avatar/large/matthew.png' />
     <Card.Content>
       <Card.Header>

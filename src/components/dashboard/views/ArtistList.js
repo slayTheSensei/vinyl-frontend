@@ -12,7 +12,10 @@ let artists = results.map(artist =>
 
   return(
     <div>
-      {artists}
+      <Header as='h2'>Artists</Header>
+      <Card.Group>
+        {artists}
+      </Card.Group>
     </div>
   );
 }
