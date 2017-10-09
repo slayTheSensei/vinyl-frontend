@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Container, Item, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Menu, Item, Header } from 'semantic-ui-react'
 import axios from 'axios'
 
 import {
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 
 // importing components
@@ -27,13 +26,14 @@ class Dashboard extends Component {
 // API calls are done in componentDidMount
 componentDidMount() {
   let self = this
-let userToken = this.props.data.token
+  let userToken = this.props.data.token
   let auth = {
     headers: {
         "Authorization" : 'Token ' + userToken
       }
     }
   let user = self.props.data.user_id
+
   // GET Artists
   axios.get('http://localhost:4741/artists')
     .then(response => {
@@ -109,15 +109,6 @@ axios.delete('http://localhost:4741/sign-out/' + user, auth)
 
     return (
       <div className="app side">
-
-      <Menu attached='top'>
-        <Container>
-        </Container>
-        <Menu.Item>
-          <Button primary onClick={() => this.signOut()}><Link to="/">Sign Out</Link></Button>
-        </Menu.Item>
-      </Menu>
-
         <div>
         <Sidebar.Pushable as={Segment} >
           <Sidebar as={Menu} animation='uncover' width='thin' visible={visible} icon='labeled' vertical inverted>
@@ -125,7 +116,7 @@ axios.delete('http://localhost:4741/sign-out/' + user, auth)
           </Sidebar>
           <Sidebar.Pusher className="side">
             <Segment basic>
-                <Route path="/dashboard/events" render={ () => <EventsList data={this.state.events} />} />
+                <Route path="/dashboard/events" render={ () => <EventsList data={this.state.events} user={this.props.data.user_id} />} />
                 <Route path="/dashboard/artists" render={ () => <ArtistList data={this.state.artists} />} />
                   <Header as='h2'>My Events</Header>
                   <Item.Group>

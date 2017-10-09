@@ -7,9 +7,9 @@ const EventsList = props => {
 
 const results = props.data;
 let events = results.map(event =>
-  <Events name={event.name} id={event.id} venue={event.venue} />
+  <Events name={event.name} id={event.id} venue={event.venue} user={props.user} />
 )
-
+console.log('User = ' + props.user)
   return(
     <div>
       <Header as='h2'>Events</Header>

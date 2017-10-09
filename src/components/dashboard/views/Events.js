@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Image, Header, Label, Item, Button, Icon} from 'semantic-ui-react'
+import { Label, Item, Button, Icon} from 'semantic-ui-react'
 import axios from 'axios'
-import Artists from './Artists.js'
 
 class Events extends Component {
 
@@ -10,7 +9,7 @@ class Events extends Component {
     let data = {
         id: self.props.id
     }
-    // pust json data into data variable
+    // Delete Event
     axios.delete('http://localhost:4741/events/' + self.props.id, data)
     .then(function (response) {
       console.log(response);
@@ -18,9 +17,28 @@ class Events extends Component {
     .catch(function (error) {
       console.log(error)
     })
-
-  // console.log(this.props.id)
   }
+
+    // Create Event
+    onCreateEvent = () => {
+      let self = this
+      // pust json data into data variable
+      let data = {
+          'event': {
+          'name': 'After Dark',
+          'venue': 'Room 112'
+        }
+      }
+
+      axios.post('http://localhost:4741/events/', data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+
 render() {
   return(
     <Item>
@@ -39,10 +57,14 @@ render() {
           Delete Event
           <Icon name='right chevron' />
         </Button>
+        <Button primary size="mini" onClick={() => this.onCreateEvent()}>
+          Create Event
+          <Icon name='right chevron' />
+        </Button>
       </Item.Content>
     </Item>
-  )
-}
+    )
+  }
 }
 
 export default Events
