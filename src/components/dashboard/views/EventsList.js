@@ -13,7 +13,7 @@ console.log('User = ' + props.user)
   return(
     <div>
       <Header as='h2'>Events</Header>
-      <Item.Group>
+      <Item.Group divided>
         {events}
       </Item.Group>
     </div>

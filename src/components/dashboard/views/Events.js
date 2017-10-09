@@ -1,6 +1,8 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
-import { Label, Item, Button, Icon} from 'semantic-ui-react'
+import { Label, Item, Button, Icon, Modal, Header, Image} from 'semantic-ui-react'
 import axios from 'axios'
+import ArtistModal from './ArtistModal.js'
 
 class Events extends Component {
 
@@ -29,7 +31,6 @@ class Events extends Component {
           'venue': 'Room 112'
         }
       }
-
       axios.post('http://localhost:4741/events/', data)
       .then(function (response) {
         console.log(response);
@@ -38,6 +39,11 @@ class Events extends Component {
         console.log(error);
       })
   }
+
+  // <Button primary size="mini" onClick={() => this.onCreateEvent()}>
+  //   Create Event
+  //   <Icon name='right chevron' />
+  // </Button>
 
 render() {
   return(
@@ -57,10 +63,36 @@ render() {
           Delete Event
           <Icon name='right chevron' />
         </Button>
-        <Button primary size="mini" onClick={() => this.onCreateEvent()}>
-          Create Event
-          <Icon name='right chevron' />
-        </Button>
+
+        <Modal trigger={<Button positive size="mini">Create Event</Button>}>
+    <Modal.Header>Select an Artist</Modal.Header>
+    <Modal.Content image scrolling>
+      <Image
+        size='medium'
+        src='https://react.semantic-ui.com/assets/images/avatar/large/matthew.png'
+        wrapped
+      />
+      <Modal.Description>
+        <Header>DJ Slick Vick</Header>
+        <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
+
+        {_.times(8, i => (
+          <Image
+            key={i}
+            src='/assets/images/wireframe/paragraph.png'
+            style={{ paddingBottom: 5 }}
+          />
+        ))}
+        <Button positive size="mini">Add</Button>
+      </Modal.Description>
+    </Modal.Content>
+    <Modal.Actions>
+      <Button primary>
+        Proceed <Icon name='right chevron' />
+      </Button>
+    </Modal.Actions>
+  </Modal>
+
       </Item.Content>
     </Item>
     )
