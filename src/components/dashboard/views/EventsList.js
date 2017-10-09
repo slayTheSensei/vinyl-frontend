@@ -6,10 +6,16 @@ import Events from './Events.js'
 const EventsList = props => {
 
 const results = props.data;
+// const artistsResults = props.artists
+
 let events = results.map(event =>
-  <Events name={event.name} id={event.id} venue={event.venue} user={props.user} />
+  <Events name={event.name} id={event.id} venue={event.venue} user={props.user} artists={props.artists} />
 )
-console.log('User = ' + props.user)
+
+// let artists = artistsResults.map(artist =>
+//   <Events name={artist.name} id={artist.id} bio={artist.bio} />
+// )
+
   return(
     <div>
       <Header as='h2'>Events</Header>

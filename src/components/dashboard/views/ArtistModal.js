@@ -1,36 +1,21 @@
 import _ from 'lodash'
 import React from 'react'
-import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Icon, Image, Modal, Item, Label } from 'semantic-ui-react'
 
 const ArtistModal = () => (
-  <Modal trigger={<Button>Scrolling Content Modal</Button>}>
-    <Modal.Header>Profile Picture</Modal.Header>
     <Modal.Content image scrolling>
       <Image
         size='medium'
-        src='/assets/images/wireframe/image.png'
+        src='https://react.semantic-ui.com/assets/images/avatar/large/matthew.png'
         wrapped
       />
-
       <Modal.Description>
-        <Header>Modal Header</Header>
-        <p>This is an example of expanded content that will cause the modals dimmer to scroll</p>
+        <Header>DJ Slick Vick</Header>
+        <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
 
-        {_.times(8, i => (
-          <Image
-            key={i}
-            src='/assets/images/wireframe/paragraph.png'
-            style={{ paddingBottom: 5 }}
-          />
-        ))}
+        <Button positive size="mini">Add</Button>
       </Modal.Description>
     </Modal.Content>
-    <Modal.Actions>
-      <Button primary>
-        Proceed <Icon name='right chevron' />
-      </Button>
-    </Modal.Actions>
-  </Modal>
 )
 
 export default ArtistModal

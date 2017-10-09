@@ -88,11 +88,11 @@ signOut = () => {
 axios.delete('http://localhost:4741/sign-out/' + user, auth)
   .then(response => {
   console.log(response)
-})
-.catch(error => {
-  console.log('Error fetching and parsing data', error)
-})
-}
+  })
+  .catch(error => {
+    console.log('Error fetching and parsing data', error)
+  })
+  }
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
@@ -116,15 +116,15 @@ axios.delete('http://localhost:4741/sign-out/' + user, auth)
           </Sidebar>
           <Sidebar.Pusher className="side">
             <Segment basic>
-                <Route path="/dashboard/events" render={ () => <EventsList data={this.state.events} user={this.props.data.user_id} />} />
+                <Route path="/dashboard/events" render={ () => <EventsList data={this.state.events} user={this.props.data.user_id} artists={this.state.artists} />} />
                 <Route path="/dashboard/artists" render={ () => <ArtistList data={this.state.artists} />} />
                   <Header as='h2'>My Events</Header>
                   <Item.Group>
                     {events}
                   </Item.Group>
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
+              </Segment>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
         </div>
       </div>
     )
