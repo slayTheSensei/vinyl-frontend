@@ -11,6 +11,7 @@ import ArtistList from './views/ArtistList.js'
 import EventsList from './views/EventsList.js'
 import Events from './views/Events.js'
 import Sidebar_nav from './Sidebar_nav.js'
+import MyEventsList from './views/MyEventsList.js'
 
 class Dashboard extends Component {
   constructor() {
@@ -107,6 +108,7 @@ axios.delete('http://localhost:4741/sign-out/' + user, auth)
       <Events name={event.name} id={event.id} venue={event.venue} />
     )
 
+
     return (
       <div className="app side">
         <div>
@@ -117,11 +119,9 @@ axios.delete('http://localhost:4741/sign-out/' + user, auth)
           <Sidebar.Pusher className="side">
             <Segment basic>
                 <Route path="/dashboard/events" render={ () => <EventsList data={this.state.events} user={this.props.data.user_id} artists={this.state.artists} />} />
+                <Route path="/dashboard/myevents" render={ () => <MyEventsList data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} />} />
                 <Route path="/dashboard/artists" render={ () => <ArtistList data={this.state.artists} />} />
-                  <Header as='h2'>My Events</Header>
-                  <Item.Group>
-                    {events}
-                  </Item.Group>
+                  <Header as='h2'>Welcome to Vinyl</Header>
               </Segment>
             </Sidebar.Pusher>
           </Sidebar.Pushable>
