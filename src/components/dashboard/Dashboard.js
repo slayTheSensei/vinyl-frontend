@@ -53,6 +53,7 @@ componentDidMount() {
     this.setState({
       events: response.data.events
     })
+    console.log(response.data.events)
   })
   .catch(error => {
     console.log('Error fetching and parsing data', error)
@@ -64,7 +65,8 @@ componentDidMount() {
     this.setState({
       user_events: response.data.user.events
     })
-    // console.log(response.data.user.events)
+    console.log(response.data.user.user_events)
+
   })
   .catch(error => {
     console.log('Error fetching and parsing data', error)
@@ -103,7 +105,7 @@ axios.delete('http://localhost:4741/sign-out/' + user, auth)
     const { visible } = this.state
 
     const results = this.state.user_events;
-    console.log(results)
+    // console.log(results)
 
     let events = results.map(event =>
       <Events name={event.name} id={event.id} venue={event.venue} />

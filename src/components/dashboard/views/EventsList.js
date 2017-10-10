@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
-import { Item, Header } from 'semantic-ui-react'
+import { Item, Header, Button, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 import Events from './Events.js'
 
 const EventsList = props => {
+
+
+
+// Create Button
 
 const results = props.data;
 // const artistsResults = props.artists
@@ -19,6 +23,7 @@ let events = results.map(event =>
   return(
     <div>
       <Header as='h2'>Events</Header>
+      
       <Item.Group divided>
         {events}
       </Item.Group>

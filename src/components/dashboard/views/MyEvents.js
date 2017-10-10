@@ -7,7 +7,6 @@ import ArtistModal from './ArtistModal.js'
 class MyEvents extends Component {
 
   componentDidMount() {
-    console.log('User Event ID = ' + this.props.id)
   }
 
     // Delete Event
@@ -16,7 +15,7 @@ class MyEvents extends Component {
     let data = {
         id: self.props.id
     }
-    axios.delete('http://localhost:4741/user_events/' + self.props.id, data)
+    axios.delete('http://localhost:4741/events/' + self.props.id, data)
     .then(function (response) {
       console.log(response);
     })

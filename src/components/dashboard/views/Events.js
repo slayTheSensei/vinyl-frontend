@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Label, Item, Button, Icon, Modal, Header, Image} from 'semantic-ui-react'
+import { Label, Item, Modal, Header, Image, Button, Icon} from 'semantic-ui-react'
 import axios from 'axios'
 
 class Events extends Component {
@@ -25,23 +25,22 @@ class Events extends Component {
   }
 
     // Create Event
-    onCreateEvent = () => {
-      let self = this
-      // pust json data into data variable
-      let data = {
-          'event': {
-          'name': 'After Dark',
-          'venue': 'Room 112'
-        }
-      }
-      axios.post('http://localhost:4741/events/', data)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-  }
+  //   onCreateEvent = () => {
+  //     let self = this
+  //     let data = {
+  //         'event': {
+  //         'name': 'After Dark',
+  //         'venue': 'Room 112'
+  //       }
+  //     }
+  //     axios.post('http://localhost:4741/events/', data)
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     })
+  // }
 
   // Create Button
 
@@ -53,10 +52,6 @@ class Events extends Component {
 
   // Delete Button
 
-  // Delete Event
-  // <Button negative size="mini" onClick={() => this.deleteEvents()}>
-  //   <Icon name='right chevron' />
-  // </Button>
 
 
 render() {
@@ -73,7 +68,10 @@ render() {
           <Label></Label>
           <Label content='Live Music' />
         </Item.Extra>
-
+        <Button negative size="mini" onClick={() => this.deleteEvents()}>
+          Delete Event
+          <Icon name='right chevron' />
+        </Button>
       </Item.Content>
     </Item>
     )
