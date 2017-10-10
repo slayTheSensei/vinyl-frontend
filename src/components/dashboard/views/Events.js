@@ -2,7 +2,6 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Label, Item, Button, Icon, Modal, Header, Image} from 'semantic-ui-react'
 import axios from 'axios'
-import ArtistModal from './ArtistModal.js'
 
 class Events extends Component {
 
@@ -44,16 +43,23 @@ class Events extends Component {
       })
   }
 
+  // Create Button
+
+  // Create Event
   // <Button primary size="mini" onClick={() => this.onCreateEvent()}>
   //   Create Event
   //   <Icon name='right chevron' />
   // </Button>
 
+  // Delete Button
+
+  // Delete Event
+  // <Button negative size="mini" onClick={() => this.deleteEvents()}>
+  //   <Icon name='right chevron' />
+  // </Button>
+
+
 render() {
-  const artistsResults = this.props.artists
-  let artists = artistsResults.map(artist =>
-    <ArtistModal name={artist.name} id={artist.id} bio={artist.bio} />
-  )
   return(
     <Item>
       <Item.Image src='https://react.semantic-ui.com/assets/images/wireframe/image.png' />
@@ -67,20 +73,6 @@ render() {
           <Label></Label>
           <Label content='Live Music' />
         </Item.Extra>
-        <Button primary size="mini" onClick={() => this.deleteEvents()}>
-          Delete Event
-          <Icon name='right chevron' />
-        </Button>
-
-        <Modal trigger={<Button positive size="mini">Add an Artist</Button>}>
-          <Modal.Header>Select an Artist</Modal.Header>
-            {artists}
-          <Modal.Actions>
-            <Button primary>
-              Proceed <Icon name='right chevron' />
-            </Button>
-          </Modal.Actions>
-        </Modal>
 
       </Item.Content>
     </Item>

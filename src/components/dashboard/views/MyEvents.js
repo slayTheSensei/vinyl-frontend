@@ -10,12 +10,12 @@ class MyEvents extends Component {
     console.log('User = ' + this.props.user)
   }
 
+    // Delete Event
   deleteEvents = () => {
     let self = this
     let data = {
         id: self.props.id
     }
-    // Delete Event
     axios.delete('http://localhost:4741/events/' + self.props.id, data)
     .then(function (response) {
       console.log(response);
@@ -26,9 +26,10 @@ class MyEvents extends Component {
   }
 
     // Create Event
+    // TODO need to add formfield for create events data
     onCreateEvent = () => {
       let self = this
-      // pust json data into data variable
+      // puts json data into data variable
       let data = {
           'event': {
           'name': 'After Dark',
