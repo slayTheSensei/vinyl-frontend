@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Sidebar, Segment, Menu, Item, Header } from 'semantic-ui-react'
 import axios from 'axios'
 
@@ -13,8 +13,9 @@ import Events from './views/Events.js'
 import Sidebar_nav from './Sidebar_nav.js'
 import MyEventsList from './views/MyEventsList.js'
 import LandingDash from './views/LandingDash.js'
+import CreateEvent from './views/CreateEvent.js'
 
-class Dashboard extends Component {
+class Dashboard extends React.Component {
   constructor() {
   super();
   this.state = {
@@ -121,10 +122,12 @@ axios.delete('http://localhost:4741/sign-out/' + user, auth)
           </Sidebar>
           <Sidebar.Pusher className="side">
             <Segment basic>
+
                 <Route path="/dashboard/events" render={ () => <EventsList data={this.state.events} user={this.props.data.user_id} artists={this.state.artists} />} />
-                <Route path="/dashboard/myevents" render={ () => <MyEventsList data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} />} />
+                <Route path="/dashboard/myevents" render={ ({history}) => <MyEventsList data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} />} />
                 <Route path="/dashboard/artists" render={ () => <ArtistList data={this.state.artists} />} />
                 <Route exact path='/dashboard' render={ ()=> <LandingDash />} />
+                <Route path='/dashboard/createevent' render={ ()=> <CreateEvent user={this.props.data.user_id} />} />
               </Segment>
             </Sidebar.Pusher>
           </Sidebar.Pushable>

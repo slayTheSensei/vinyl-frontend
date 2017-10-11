@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Item, Header, Button, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 import MyEvents from './MyEvents.js'
@@ -7,34 +8,45 @@ const MyEventsList = props => {
 
 const results = props.data;
 
-// Create Event
+ // ////////////////////////
+// Create Event & User Event
+// /////////////////////////
 const onCreateEvent = () => {
+
   let self = this
-  // pust json data into data variable
   let data = {
       'event': {
       'name': 'After Dark',
       'venue': 'Room 112'
     }
   }
+
   axios.post('http://localhost:4741/events/', data)
   .then(function (response) {
-    console.log(response.data.event);
+    console.log(response);
       let eventData = {
-          'user_event': {
-          'user_id': props.user,
-          'event_id': response.data.event.id
+        'user_event': {
+        'user_id': props.user,
+        'event_id': response.data.event.id
         }
       }
-      console.log(eventData)
     axios.post('http://localhost:4741/user_events/', eventData)
+    .then(function (response) {
+      console.log(response)
+    })
   })
   .catch(function (error) {
     console.log(error);
-  })
+    })
   }
 
+  const toCreateEvent = () => {
+    console.log(this)
+  }
 
+  // ///////////////////////////////
+ // Maps every instance of my events
+ // ///////////////////////////////
 let myEvents = results.map(event =>
   <MyEvents name={event.name} id={event.id} venue={event.venue} user={props.user} artists={props.artists} />
 )
@@ -43,10 +55,7 @@ let myEvents = results.map(event =>
     <div>
       <Header as='h2'>My Events</Header>
       <div>
-        <Button primary size="mini" onClick={() => onCreateEvent()}>
-          Create Event
-          <Icon name='right chevron' />
-        </Button>
+        <Link to='/dashboard/createevent'>Create Event</Link>
       </div>
       <Item.Group divided>
         {myEvents}

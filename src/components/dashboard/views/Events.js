@@ -1,12 +1,12 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import React from 'react'
 import { Label, Item, Modal, Header, Image, Button, Icon} from 'semantic-ui-react'
 import axios from 'axios'
 
-class Events extends Component {
+class Events extends React.Component {
 
-  componentDidMount() {
-    console.log('User = ' + this.props.user)
+  toCreateEvent = () => {
+    console.log(this)
   }
 
   deleteEvents = () => {
@@ -43,12 +43,12 @@ class Events extends Component {
   // }
 
   // Create Button
-
   // Create Event
-  // <Button primary size="mini" onClick={() => this.onCreateEvent()}>
+  // <Button primary size="mini" onClick={() => this.toCreateEvent()}>
   //   Create Event
   //   <Icon name='right chevron' />
   // </Button>
+
 
   // Delete Button
 
