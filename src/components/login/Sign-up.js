@@ -35,7 +35,7 @@ onSubmit = () => {
     }
   }
   console.log(data)
-  axios.post('http://localhost:4741/sign-up/', data)
+  axios.post('https://vinyl-backend-api.herokuapp.com/sign-up/', data)
   .then(function (response) {
     console.log(response);
 

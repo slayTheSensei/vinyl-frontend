@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
 }
 
 // getUserEvents() {
-//   axios.get('http://localhost:4741/users/' + this.user, this.auth)
+//   axios.get('https://vinyl-backend-api.herokuapp.com/users/' + this.user, this.auth)
 //     .then(response => {
 //     this.setState({
 //       user_events: response.data.user.events
@@ -62,7 +62,7 @@ getUserEvents() {
   let user = self.props.data.user_id
 
   // GET Artists
-  axios.get('http://localhost:4741/artists')
+  axios.get('https://vinyl-backend-api.herokuapp.com/artists')
     .then(response => {
     this.setState({
       artists: response.data.artists
@@ -73,7 +73,7 @@ getUserEvents() {
   })
 
 // GET Events
-  axios.get('http://localhost:4741/events')
+  axios.get('https://vinyl-backend-api.herokuapp.com/events')
     .then(response => {
     this.setState({
       events: response.data.events
@@ -85,7 +85,7 @@ getUserEvents() {
   })
 
 // GET User Events
-  axios.get('http://localhost:4741/users/' + user, auth)
+  axios.get('https://vinyl-backend-api.herokuapp.com/users/' + user, auth)
     .then(response => {
     this.setState({
       user_events: response.data.user.events
@@ -118,7 +118,7 @@ signOut = () => {
       }
     }
 
-axios.delete('http://localhost:4741/sign-out/' + user, auth)
+axios.delete('https://vinyl-backend-api.herokuapp.com/sign-out/' + user, auth)
   .then(response => {
   console.log(response)
   })

@@ -37,7 +37,7 @@ onSubmit = () => {
       password: this.state.password
     }
   }
-  axios.post('http://localhost:4741/sign-in/', data)
+  axios.post('https://vinyl-backend-api.herokuapp.com/sign-in/', data)
   .then(function (response) {
     console.log(response);
     // add token to local storage for authenicated requests

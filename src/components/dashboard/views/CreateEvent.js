@@ -28,7 +28,7 @@ class CreateEvent extends Component {
           venue: this.state.venue
         }
       }
-      axios.post('http://localhost:4741/events/', data)
+      axios.post('https://vinyl-backend-api.herokuapp.com/events/', data)
       .then(function (response) {
         console.log(response);
           let eventData = {
@@ -37,7 +37,7 @@ class CreateEvent extends Component {
             'event_id': response.data.event.id
             }
           }
-        axios.post('http://localhost:4741/user_events/', eventData)
+        axios.post('https://vinyl-backend-api.herokuapp.com/user_events/', eventData)
         .then(function (response) {
           console.log(response)
         })

@@ -15,7 +15,7 @@ class MyEvents extends Component {
     let data = {
         id: self.props.id
     }
-    axios.delete('http://localhost:4741/events/' + self.props.id, data)
+    axios.delete('https://vinyl-backend-api.herokuapp.com/events/' + self.props.id, data)
     .then(function (response) {
       console.log(response);
     })
@@ -35,7 +35,7 @@ class MyEvents extends Component {
           'venue': 'Room 112'
         }
       }
-      axios.post('http://localhost:4741/events/', data)
+      axios.post('https://vinyl-backend-api.herokuapp.com/events/', data)
       .then(function (response) {
         console.log(response);
       })
