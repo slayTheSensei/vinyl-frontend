@@ -42,6 +42,7 @@ class CreateEvent extends Component {
           console.log(response)
         })
       })
+      .then(self.props.getUserEvents)
       .catch(function (error) {
         console.log(error);
         })

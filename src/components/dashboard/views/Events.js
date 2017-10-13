@@ -5,26 +5,24 @@ import axios from 'axios'
 
 class Events extends React.Component {
 
-  toCreateEvent = () => {
-    console.log(this)
-  }
-
   deleteEvents = () => {
     let self = this
     let data = {
         id: self.props.id
     }
+
     // Delete Event
     axios.delete('http://localhost:4741/events/' + self.props.id, data)
     .then(function (response) {
       console.log(response);
     })
+    .then(self.props.getUserEvents)
     .catch(function (error) {
       console.log(error)
     })
   }
 
-    // Create Event
+  // Create Event
   //   onCreateEvent = () => {
   //     let self = this
   //     let data = {
