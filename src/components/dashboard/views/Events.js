@@ -1,26 +1,57 @@
-import React, { Component } from 'react'
-import { Image, Header, Label, Item, Button, Icon} from 'semantic-ui-react'
+import _ from 'lodash'
+import React from 'react'
+import { Label, Item, Modal, Header, Image, Button, Icon} from 'semantic-ui-react'
 import axios from 'axios'
-import Artists from './Artists.js'
 
-class Events extends Component {
+class Events extends React.Component {
 
   deleteEvents = () => {
     let self = this
     let data = {
         id: self.props.id
     }
-    // pust json data into data variable
+
+    // Delete Event
     axios.delete('http://localhost:4741/events/' + self.props.id, data)
     .then(function (response) {
       console.log(response);
     })
+    .then(self.props.getUserEvents)
     .catch(function (error) {
       console.log(error)
     })
-
-  // console.log(this.props.id)
   }
+
+  // Create Event
+  //   onCreateEvent = () => {
+  //     let self = this
+  //     let data = {
+  //         'event': {
+  //         'name': 'After Dark',
+  //         'venue': 'Room 112'
+  //       }
+  //     }
+  //     axios.post('http://localhost:4741/events/', data)
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     })
+  // }
+
+  // Create Button
+  // Create Event
+  // <Button primary size="mini" onClick={() => this.toCreateEvent()}>
+  //   Create Event
+  //   <Icon name='right chevron' />
+  // </Button>
+
+
+  // Delete Button
+
+
+
 render() {
   return(
     <Item>
@@ -32,17 +63,17 @@ render() {
         </Item.Meta>
         <Item.Description>Warehouse party at an undisclosed location</Item.Description>
         <Item.Extra>
-          <Label>{this.props.artists}</Label>
+          <Label></Label>
           <Label content='Live Music' />
         </Item.Extra>
-        <Button primary size="mini" onClick={() => this.deleteEvents()}>
+        <Button negative size="mini" onClick={() => this.deleteEvents()}>
           Delete Event
           <Icon name='right chevron' />
         </Button>
       </Item.Content>
     </Item>
-  )
-}
+    )
+  }
 }
 
 export default Events

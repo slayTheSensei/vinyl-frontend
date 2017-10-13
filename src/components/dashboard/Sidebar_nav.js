@@ -13,6 +13,10 @@ const Sidebar_nav = props => {
       <Icon name='home' />
       Home
     </Link></Menu.Item>
+  <Menu.Item name='ticket'><Link to="/dashboard/myevents">
+      <Icon name='ticket' />
+      My Events
+    </Link></Menu.Item>
     <Menu.Item name='ticket'><Link to="/dashboard/events">
       <Icon name='ticket' />
       Events

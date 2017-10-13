@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
-import { Item, Header } from 'semantic-ui-react'
+import { Item, Header, Button, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 import Events from './Events.js'
 
-const EventsList = props => {
+class EventsList extends Component {
 
-const results = props.data;
-let events = results.map(event =>
-  <Events name={event.name} id={event.id} venue={event.venue} />
+results = this.props.data;
+
+ events = this.results.map(event =>
+  <Events name={event.name} id={event.id} venue={event.venue} user={this.props.user} artists={this.props.artists}  getUserEvents={this.props.getUserEvents} />
 )
+
+render() {
 
   return(
     <div>
       <Header as='h2'>Events</Header>
-      <Item.Group>
-        {events}
+
+      <Item.Group divided>
+        {this.events}
       </Item.Group>
     </div>
-  )
+    )
+  }
 }
 
 export default EventsList
