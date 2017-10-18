@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 class SignInForm extends Component {
   constructor(props) {
@@ -37,14 +37,14 @@ onSubmit = () => {
     // add token to local storage for authenicated requests
     console.log(response.data.user.token)
     console.log(response.data.user.id)
-    self.props.data(response.data.user.token, response.data.user.id )
+    self.props.data(response.data.user.token, response.data.user.id, self.props )
+    console.log('het')
   })
-  // .then(history.push('/dashboard'))
   .catch(function (error) {
     console.log(error);
   })
 
-console.log(this)
+
 }
 
   render() {
@@ -104,4 +104,4 @@ console.log(this)
 )
 }
 }
-export default SignInForm
+export default withRouter(SignInForm)

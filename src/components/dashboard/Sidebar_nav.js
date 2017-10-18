@@ -28,10 +28,6 @@ const Sidebar_nav = props => {
           <Icon type="user" />
           <span>Artists</span>
         </Link></Menu.Item>
-      <Menu.Item key="4"><Link to={'/dashboard/myEvents'}>
-          <Icon type="user" />
-          <span>My Events</span>
-        </Link></Menu.Item>
         </Menu>
       </div>
   );

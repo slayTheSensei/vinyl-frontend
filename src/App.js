@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
+import PropTypes from 'prop-types'
 import {
   BrowserRouter,
   Route,
+  withRouter
 } from 'react-router-dom'
+
+
 
 // importing components
 import SignUpForm from './components/login/Sign-up.js'
@@ -20,11 +24,13 @@ class App extends Component {
       this.setToken = this.setToken.bind(this)
   }
 
-  setToken (token, user_id) {
+
+  setToken (token, user_id, next) {
     this.setState({
       token: token,
       user_id: user_id
     })
+    next.history.push(`/dashboard`)
   }
 
   render() {

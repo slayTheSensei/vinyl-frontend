@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Form, Header, Segment, Button, Image } from 'semantic-ui-react'
+import { Form, Header, Segment, Button, Image} from 'semantic-ui-react'
+import { message } from 'antd'
 import axios from 'axios'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 
 class CreateEvent extends Component {
@@ -48,6 +49,7 @@ class CreateEvent extends Component {
       })
       .then(self.props.getUserEvents)
       .then(this.props.history.push(`/dashboard`))
+      .then(message.success('Event Created'))
       .catch(function (error) {
         console.log(error);
         })
@@ -81,7 +83,8 @@ class CreateEvent extends Component {
               value={this.state.date}
               width={16} />
           </Form.Group>
-          <Button color='blue' fluid size='large' onClick={() => this.onSubmit()}>Create</Button>
+          <Button color='blue' fluid size='large' style={{ margin: '15px 0' }} onClick={() => this.onSubmit()}>Create</Button>
+          <Link to='/dashboard'>Cancel</Link>
         </Form>
       </div>
     )

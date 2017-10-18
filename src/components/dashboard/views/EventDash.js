@@ -49,7 +49,7 @@ class EventDash extends React.Component {
     }
 
     return(
-      <Table dataSource={this.props.data} pagination={{ pageSize: 3 }} columns={columns} />
+      <Table dataSource={this.props.data} pagination={{ pageSize: 4 }} columns={columns} />
     )
   }
 }

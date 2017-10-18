@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Table, Icon, Button, Popconfirm, message  } from 'antd'
+import { Row, Col, Table, Icon, Button, Popconfirm, message, Tooltip  } from 'antd'
 import EventDash from './EventDash.js'
 import { Card } from 'semantic-ui-react'
 import { Route, BrowserRouter, withRouter } from 'react-router-dom'
@@ -36,12 +36,9 @@ toCreate = () => {
       render: (text, record) => (
         <span>
           <Popconfirm title="Are you sure delete this artist?" onConfirm={artistConfirm} onCancel={artistCancel} okText="Yes" cancelText="No">
-          <a href="">Delete</a>
+          <a href="">Remove</a>
           </Popconfirm>
-          <span className="ant-divider" />
-          <a href="#">
-            Edit
-          </a>
+
         </span>
       ),
     }];
@@ -68,7 +65,9 @@ toCreate = () => {
           <div style={{ padding: 24, background: '#fff', height: 400, margin: '12px 6px' }}>
             <Row>
               <Col span={1}>
-                <Button type="" size="medium" shape="circle" icon="plus" onClick={() => this.toCreate()} />
+                <Tooltip title="Create a new event">
+                  <Button type="" size="medium" shape="circle" icon="plus" onClick={() => this.toCreate()} />
+                </Tooltip>
               </Col>
               <Col span={5}>
               </Col>
@@ -84,8 +83,8 @@ toCreate = () => {
         </Col>
         <Col span={12}>
           <div style={{ padding: 24, background: '#fff', height: 400, margin: '12px 6px' }}>
-            <h1>Favorite Arists</h1>
-            <Table columns={artistColumns} dataSource={this.props.artists} pagination={{ pageSize: 3 }} />
+            <h1>Artist Roster</h1>
+            <Table columns={artistColumns} dataSource={this.props.roster} pagination={{ pageSize: 4 }} />
           </div>
         </Col>
       </Row>

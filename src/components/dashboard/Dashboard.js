@@ -27,6 +27,7 @@ class Dashboard extends React.Component {
     artists: [],
     events: [],
     user_events: [],
+    roster: [],
     visible: true
   };
 
@@ -76,6 +77,21 @@ getUserEvents() {
   .catch(error => {
     console.log('Error fetching and parsing data', error)
   })
+
+
+  // GET Artist Roster
+  axios.get('https://vinyl-backend-api.herokuapp.com/users/' + user, auth)
+    .then(response => {
+    this.setState({
+      roster: response.data.user.artists
+    })
+    console.log(response.data.user.artists)
+
+  })
+  .catch(error => {
+    console.log('Error fetching and parsing data', error)
+  })
+
 
 // GET Events
   axios.get('https://vinyl-backend-api.herokuapp.com/events')
@@ -160,7 +176,7 @@ axios.delete('https://vinyl-backend-api.herokuapp.com/sign-out/' + user, auth)
                 <Route path="/dashboard/events" render={ () => <EventsList getUserEvents={this.getUserEvents} data={this.state.events} user={this.props.data.user_id} artists={this.state.artists} />} />
                 <Route path="/dashboard/myevents" render={ ({history}) => <MyEventsList getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} />} />
                 <Route path="/dashboard/artists" render={ () => <ArtistList getUserEvents={this.getUserEvents} data={this.state.artists} />} />
-                <Route path='/dashboard' render={ ()=> <LandingDash getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} />} />
+                <Route path='/dashboard' render={ ()=> <LandingDash getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} roster={this.state.roster} />} />
             </Content>
           <Footer style={{ textAlign: 'center' }}>
             Vinyl Made in PVD with love.
