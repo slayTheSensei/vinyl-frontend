@@ -35,7 +35,7 @@ toCreate = () => {
       key: 'action',
       render: (text, record) => (
         <span>
-          <Popconfirm title="Are you sure delete this artist?" onConfirm={artistConfirm} onCancel={artistCancel} okText="Yes" cancelText="No">
+          <Popconfirm title="Are you sure delete this artist?" onConfirm={artistConfirm} onCancel={artistCancel} okText="Yes" cancelText="No" artist={text} art={record} render={this.props.getUserEvents}>
           <a href="">Remove</a>
           </Popconfirm>
 
@@ -49,7 +49,7 @@ toCreate = () => {
     );
 
     function artistConfirm(e) {
-      console.log(e);
+      console.log(this);
       message.success('Event Deleted');
     }
 

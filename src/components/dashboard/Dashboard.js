@@ -85,7 +85,7 @@ getUserEvents() {
     this.setState({
       roster: response.data.user.artists
     })
-    console.log(response.data.user.artists)
+    console.log(response.data.user)
 
   })
   .catch(error => {
