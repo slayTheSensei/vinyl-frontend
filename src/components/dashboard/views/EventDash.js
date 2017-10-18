@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table, Icon, Popconfirm, message } from 'antd';
-
+import axios from 'axios'
 
 class EventDash extends React.Component {
 
@@ -28,7 +28,7 @@ class EventDash extends React.Component {
     key: 'action',
     render: (text, record) => (
       <span>
-        <Popconfirm title="Are you sure delete this event?" onConfirm={eventConfirm} onCancel={eventCancel} okText="Yes" cancelText="No">
+        <Popconfirm title="Are you sure delete this event?" onConfirm={eventConfirm} onCancel={eventCancel} okText="Yes" cancelText="No" event={record.id} render={this.props.render} >
         <a href="">Delete</a>
         </Popconfirm>
         <span className="ant-divider" />
@@ -39,8 +39,24 @@ class EventDash extends React.Component {
     )}];
 
     function eventConfirm(e) {
-      console.log(e);
-      message.success('Artist Deleted');
+      console.log(this.props.event)
+      console.log(this.props.render)
+
+      let self = this
+      let data = {
+          id: self.props.event
+      }
+
+      // Delete Event
+      axios.delete('https://vinyl-backend-api.herokuapp.com/events/' + self.props.event, data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .then(self.props.render)
+      .catch(function (error) {
+        console.log(error)
+      })
+      message.success('Event Deleted');
     }
 
     function eventCancel(e) {

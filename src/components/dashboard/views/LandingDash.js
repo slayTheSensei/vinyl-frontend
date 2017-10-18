@@ -76,7 +76,7 @@ toCreate = () => {
               </Col>
             </Row>
             <div>
-              <Route exact path="/dashboard" render={ () => <EventDash data={this.props.data} />} />
+              <Route exact path="/dashboard" render={ () => <EventDash data={this.props.data} render={this.props.getUserEvents} />} />
               <Route exact path='/dashboard/createevent' render={ ()=> <CreateEvent getUserEvents={this.props.getUserEvents} user={this.props.user} />} />
             </div>
           </div>
