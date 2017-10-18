@@ -1,31 +1,39 @@
 import React, { Component } from 'react'
-import { Menu, Icon, Item, Card } from 'semantic-ui-react'
 import {
   Link
 } from 'react-router-dom'
+import { Menu, Icon, Layout} from 'antd';
 
+const { Header } = Layout;
 
 const Sidebar_nav = props => {
 
   return(
     <div>
-    <Menu.Item name='home'><Link to="/dashboard">
-      <Icon name='home' />
-      Home
-    </Link></Menu.Item>
-  <Menu.Item name='ticket'><Link to="/dashboard/myevents">
-      <Icon name='ticket' />
-      My Events
-    </Link></Menu.Item>
-    <Menu.Item name='ticket'><Link to="/dashboard/events">
-      <Icon name='ticket' />
-      Events
-    </Link></Menu.Item>
-    <Menu.Item name='options'><Link to="/dashboard/artists">
-      <Icon name='options' />
-      Artists
-    </Link></Menu.Item>
-    </div>
+      <Header style={{ background: '#1A1F24', padding: 0, color: 'white', textAlign: "center" }}>
+        <img src={ require('./../../images/vinyl-logo.png') } />
+        </Header>
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{ background: '#272F42'}}>
+          <div style={{ height: '40px' }}>
+          </div>
+        <Menu.Item key="1"><Link to={'/dashboard'}>
+          <Icon type="pie-chart" />
+          <span>Dashboard</span>
+        </Link></Menu.Item>
+        <Menu.Item key="2"><Link to={'/dashboard/events'}>
+          <Icon type="environment-o" />
+          <span>Events</span>
+        </Link></Menu.Item>
+        <Menu.Item key="3"><Link to={'/dashboard/artists'}>
+          <Icon type="user" />
+          <span>Artists</span>
+        </Link></Menu.Item>
+      <Menu.Item key="4"><Link to={'/dashboard/myEvents'}>
+          <Icon type="user" />
+          <span>My Events</span>
+        </Link></Menu.Item>
+        </Menu>
+      </div>
   );
 }
 

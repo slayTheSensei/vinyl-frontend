@@ -14,13 +14,14 @@ results = this.props.data;
 render() {
 
   return(
-    <div>
-      <Header as='h2'>Events</Header>
-
-      <Item.Group divided>
-        {this.events}
-      </Item.Group>
-    </div>
+      <div>
+        <div style={{ padding: 24, background: '#fff', minHeight: 400, margin: '12px' }}>
+          <Header as='h2' style={{ textAlign: 'left' }}>Events</Header>
+          <Item.Group divided>
+            {this.events}
+          </Item.Group>
+        </div>
+      </div>
     )
   }
 }

@@ -8,7 +8,6 @@ class SignInForm extends Component {
     this.state = {
       email: '',
       password: '',
-      token: ''
   }
   this.onChange = this.onChange.bind(this)
   this.onSubmit = this.onSubmit.bind(this)
@@ -21,12 +20,6 @@ onChange = (e) => {
   })
 }
 
-// setToken = () => {
-//   this.setState({
-//     token: response.data.user.token
-//   })
-// }
-
 // Submits credentials to api
 onSubmit = () => {
   let self = this
@@ -37,6 +30,7 @@ onSubmit = () => {
       password: this.state.password
     }
   }
+
   axios.post('https://vinyl-backend-api.herokuapp.com/sign-in/', data)
   .then(function (response) {
     console.log(response);
@@ -44,7 +38,6 @@ onSubmit = () => {
     console.log(response.data.user.token)
     console.log(response.data.user.id)
     self.props.data(response.data.user.token, response.data.user.id )
-    // this.props.data.
   })
   // .then(history.push('/dashboard'))
   .catch(function (error) {

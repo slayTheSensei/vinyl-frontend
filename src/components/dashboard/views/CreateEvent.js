@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { Form, Header, Segment, Button, Image } from 'semantic-ui-react'
 import axios from 'axios'
+import { withRouter } from 'react-router-dom'
+
 
 class CreateEvent extends Component {
   constructor(props) {
     super(props)
       this.state = {
         name: '',
-        venue: ''
+        venue: '',
+        date: ''
     }
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -31,6 +34,7 @@ class CreateEvent extends Component {
       axios.post('https://vinyl-backend-api.herokuapp.com/events/', data)
       .then(function (response) {
         console.log(response);
+        console.log(self.props.user)
           let eventData = {
             'user_event': {
             'user_id': self.props.user,
@@ -43,48 +47,45 @@ class CreateEvent extends Component {
         })
       })
       .then(self.props.getUserEvents)
+      .then(this.props.history.push(`/dashboard`))
       .catch(function (error) {
         console.log(error);
         })
       }
 
-    toUserEvents = () => {
-      this.props.history.push('/sign-in')
-    }
-
   render() {
     return(
       <div>
-        <Header as='h2' color='teal' textAlign='center'>
-          <Image src='/logo.png' />
-          {' '}Create a new event
-        </Header>
-        <Form size='large'>
-          <Segment stac ked>
+        <Form size={'small'}>
+          <Form.Group>
             <Form.Input
-              fluid
-              icon='user'
-              iconPosition='left'
               name='name'
-              placeholder='Event Name'
+              placeholder='Name'
               onChange={e => this.onChange(e)}
               value={this.state.name}
-            />
+              width={16} />
+          </Form.Group>
+          <Form.Group>
             <Form.Input
-              fluid
-              icon='lock'
-              iconPosition='left'
-              name="venue"
+              name='venue'
               placeholder='Venue'
-              value={this.state.venue}
               onChange={e => this.onChange(e)}
-            />
-          <Button color='teal' fluid size='large' onClick={() => this.onSubmit()}>Login</Button>
-          </Segment>
+              value={this.state.venue}
+              width={16} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Input
+              name='date'
+              placeholder='Date'
+              onChange={e => this.onChange(e)}
+              value={this.state.date}
+              width={16} />
+          </Form.Group>
+          <Button color='blue' fluid size='large' onClick={() => this.onSubmit()}>Create</Button>
         </Form>
       </div>
     )
   }
 }
 
-export default CreateEvent
+export default withRouter(CreateEvent)

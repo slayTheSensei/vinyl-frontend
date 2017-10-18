@@ -4,8 +4,8 @@ import axios from 'axios'
 
 
 const Artist = props => (
-  <Card small>
-    <Image src='https://react.semantic-ui.com/assets/images/avatar/large/matthew.png' />
+  <Card style={{ margin: '35px', width: '175px' }}>
+    <Image src='https://react.semantic-ui.com/assets/images/avatar/large/matthew.png' size='medium' shape='circular' />
     <Card.Content>
       <Card.Header>
         {props.name}
@@ -15,13 +15,7 @@ const Artist = props => (
           {props.genre}
         </span>
       </Card.Meta>
-      <Card.Description>
-        {props.name} is a DJ living in Providence.
-      </Card.Description>
     </Card.Content>
-
-      <Button positive attached='bottom'>Add to Event</Button>
-
   </Card>
 );
 

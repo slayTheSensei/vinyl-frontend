@@ -1,9 +1,11 @@
 import React from 'react'
-import { Sidebar, Segment, Menu, Item, Header } from 'semantic-ui-react'
+import { Layout, Icon, Button, Table, Row, Col, Avatar } from 'antd';
 import axios from 'axios'
 
 import {
-  Route
+  Route,
+  Link,
+  BrowserRouter,
 } from 'react-router-dom'
 
 // importing components
@@ -14,6 +16,9 @@ import Sidebar_nav from './Sidebar_nav.js'
 import MyEventsList from './views/MyEventsList.js'
 import LandingDash from './views/LandingDash.js'
 import CreateEvent from './views/CreateEvent.js'
+
+const { Header, Content, Footer, Sider } = Layout;
+
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -129,37 +134,39 @@ axios.delete('https://vinyl-backend-api.herokuapp.com/sign-out/' + user, auth)
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
-
   render() {
-    const { visible } = this.state
-
-    const results = this.state.user_events;
-    // console.log(results)
-
-    let events = results.map(event =>
-      <Events name={event.name} id={event.id} venue={event.venue} />
-    )
 
     return (
-      <div className="app side">
-        <div>
-        <Sidebar.Pushable as={Segment} >
-          <Sidebar as={Menu} animation='uncover' width='thin' visible={visible} icon='labeled' vertical inverted>
-            <Sidebar_nav />
-          </Sidebar>
-          <Sidebar.Pusher className="side">
-            <Segment basic>
-
+      <Layout style={{ height: '100vh' }}>
+        <Sider
+          style={{ background: '#272F42', overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}
+          collapsible
+          collapsed={this.state.collapsed}
+          onCollapse={this.onCollapse}
+        >
+        <Sidebar_nav />
+        </Sider>
+        <Layout style={{ marginLeft: 200 }}>
+          <Header style={{ background: '#fff', padding: 0 }}>
+            <Row>
+              <Col span={22}>
+              </Col>
+              <Col>
+                <p><Link to={'/sign-in'}>Sign-In</Link></p>
+              </Col>
+            </Row>
+          </Header>
+            <Content style={{ margin: '0 16px' }}>
                 <Route path="/dashboard/events" render={ () => <EventsList getUserEvents={this.getUserEvents} data={this.state.events} user={this.props.data.user_id} artists={this.state.artists} />} />
                 <Route path="/dashboard/myevents" render={ ({history}) => <MyEventsList getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} />} />
                 <Route path="/dashboard/artists" render={ () => <ArtistList getUserEvents={this.getUserEvents} data={this.state.artists} />} />
-                <Route exact path='/dashboard' render={ ()=> <LandingDash />} />
-                <Route path='/dashboard/createevent' render={ ()=> <CreateEvent getUserEvents={this.getUserEvents} user={this.props.data.user_id} />} />
-              </Segment>
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
-        </div>
-      </div>
+                <Route path='/dashboard' render={ ()=> <LandingDash getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} />} />
+            </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            Vinyl Made in PVD with love.
+          </Footer>
+        </Layout>
+      </Layout>
     )
   }
 }

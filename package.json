@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd": "^2.13.4",
+    "antd": "^2.13.6",
     "axios": "^0.16.2",
     "install": "^0.10.1",
     "lodash": "^4.17.4",

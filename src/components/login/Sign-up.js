@@ -49,11 +49,6 @@ onSubmit = () => {
   render() {
     return (
   <div className='login-form'>
-    {/*
-      Heads up! The styles below are necessary for the correct render of this example.
-      You can do same with CSS, the main idea is that all the elements up to the `Grid`
-      below must have a height of 100%.
-    */}
     <style>{`
       body > div,
       body > div > div,
@@ -114,7 +109,7 @@ onSubmit = () => {
               onChange={e => this.onChange(e)}
             />
 
-          <Button color='teal' fluid size='large' onClick={() => this.onSubmit()}>Sign up</Button>
+          <Button onClick={() => this.onSubmit()}>Sign up</Button>
           </Segment>
         </Form>
         <Message>
