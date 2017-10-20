@@ -31,10 +31,6 @@ class EventDash extends React.Component {
         <Popconfirm title="Are you sure delete this event?" onConfirm={eventConfirm} onCancel={eventCancel} okText="Yes" cancelText="No" event={record.id} render={this.props.render} >
         <a href="">Delete</a>
         </Popconfirm>
-        <span className="ant-divider" />
-        <a href="#">
-          Edit
-        </a>
       </span>
     )}];
 

@@ -44,8 +44,8 @@ toCreate = () => {
     }];
 
     const results = this.props.artists;
-    let artists = results.map(artist =>
-      <Artists name={artist.name} />
+    let artists = results.map((artist, index) =>
+      <Artists name={artist.name} genre={artist.genre} bio={artist.bio} image={artist.image} key={index} />
     );
 
     function artistConfirm(e) {
@@ -91,8 +91,8 @@ toCreate = () => {
       <div style={{ padding: 24, background: '#fff', minHeight: 400, margin: '6px' }}>
         <h1>Available Aritists</h1>
         <Card.Group itemsPerRow={3}>
-        {artists}
-      </Card.Group>
+          {artists}
+        </Card.Group>
       </div>
     </div>
     );

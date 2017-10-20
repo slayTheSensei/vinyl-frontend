@@ -95,9 +95,8 @@ onSubmit = () => {
           </Segment>
         </Form>
         <Message>
-          New to us? <a href='/'>Sign Up</a>
+          New to us? <Link to='/'>login here</Link>
         </Message>
-        <Link to="/dashboard">Continue</Link>
       </Grid.Column>
     </Grid>
   </div>

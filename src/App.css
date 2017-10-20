@@ -37,3 +37,42 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.custom-image img {
+  display: block;
+}
+.custom-card {
+  padding: 10px 16px;
+}
+.custom-card p {
+  color: #999;
+}
+
+.dim:hover > .overlay {
+    position: absolute;
+    top: 0;
+    width:100%;
+    height:68.09%;
+    left: 0;
+    background-color:#000;
+    opacity:0.6;
+    transition: .3s ease;
+    z-index: 100;
+    display: block;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 35%;
+  opacity: 0;
+  left: 50%;
+  z-index: 101;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.dim:hover > .text {
+  opacity: 1;
+}

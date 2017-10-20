@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Link, withRouter } from 'react-router-dom'
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ onSubmit = () => {
     console.log(response);
 
   })
-  // .then(this.props.history.push('/sign-in'))
+  .then(this.props.history.push(`/sign-in`))
   .catch(function (error) {
     console.log(error);
   })
@@ -113,12 +114,12 @@ onSubmit = () => {
           </Segment>
         </Form>
         <Message>
-          Already apart of vinyl? <a href='/sign-in'>login here</a>
-        </Message>
+          Already apart of vinyl? <Link to='/sign-in'>login here</Link>
+          </Message>
       </Grid.Column>
     </Grid>
   </div>
 )
 }
 }
-export default SignUpForm
+export default withRouter(SignUpForm)
