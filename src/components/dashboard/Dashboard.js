@@ -32,6 +32,7 @@ class Dashboard extends React.Component {
       user_events: [],
       roster: [],
       user_roster: [],
+      artist_roster: [],
       visible: true
     };
 
@@ -82,7 +83,7 @@ class Dashboard extends React.Component {
     axios.get('https://vinyl-backend-api.herokuapp.com/users/' + user, auth).then(response => {
       this.setState({roster: response.data.user.artists})
       this.setState({user_roster: response.data.user.rosters[0]})
-      console.log(response.data.user.rosters)
+      console.log(response.data.user.artists)
 
     }).catch(error => {
       console.log('Error fetching and parsing data', error)
@@ -100,6 +101,15 @@ class Dashboard extends React.Component {
     axios.get('https://vinyl-backend-api.herokuapp.com/users/' + user, auth).then(response => {
       this.setState({user_events: response.data.user.events})
       console.log(response.data.user.user_events)
+
+    }).catch(error => {
+      console.log('Error fetching and parsing data', error)
+    })
+
+    // GET Roster Artists
+    axios.get('https://vinyl-backend-api.herokuapp.com/artist_rosters/').then(response => {
+      this.setState({artist_roster: response.data.artist_rosters})
+      console.log(response.data.artist_rosters)
 
     }).catch(error => {
       console.log('Error fetching and parsing data', error)
@@ -173,7 +183,7 @@ class Dashboard extends React.Component {
             <Route path="/dashboard/events" render={() => <EventsList getUserEvents={this.getUserEvents} data={this.state.events} user={this.props.data.user_id} artists={this.state.artists}/>}/>
             <Route path="/dashboard/myevents" render={({history}) => <MyEventsList getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists}/>}/>
             <Route path="/dashboard/artists" render={() => <ArtistList getUserEvents={this.getUserEvents} data={this.state.artists}/>}/>
-            <Route path='/dashboard' render={() => <LandingDash getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} roster={this.state.roster} userRoster={this.state.user_roster}/> }/>
+            <Route path='/dashboard' render={() => <LandingDash getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} roster={this.state.roster} userRoster={this.state.user_roster} artistRoster={this.state.artist_roster}/> }/>
           </Content>
           <Footer style={{
             textAlign: 'center'
