@@ -45,7 +45,7 @@ toCreate = () => {
 
     const results = this.props.artists;
     let artists = results.map((artist, index) =>
-      <Artists name={artist.name} genre={artist.genre} bio={artist.bio} image={artist.image} render={this.props.getUserEvents} userRoster={this.props.userRoster} artistId={artist.id} key={index} />
+      <Artists name={artist.name} genre={artist.genre} bio={artist.bio} image={artist.image} render={this.props.getUserEvents} roster={this.props.roster} userRoster={this.props.userRoster} artistId={artist.id} key={index} />
     );
 
     function artistConfirm(e) {

@@ -82,7 +82,7 @@ class Dashboard extends React.Component {
     axios.get('https://vinyl-backend-api.herokuapp.com/users/' + user, auth).then(response => {
       this.setState({roster: response.data.user.artists})
       this.setState({user_roster: response.data.user.rosters[0]})
-      console.log(response.data.user)
+      console.log(response.data.user.rosters)
 
     }).catch(error => {
       console.log('Error fetching and parsing data', error)
