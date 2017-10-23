@@ -92,11 +92,9 @@ toCreate = () => {
           </div>
         </Col>
       </Row>
-      <div style={{ padding: 24, background: '#fff', minHeight: 400, margin: '6px' }}>
         <Route exact path='/dashboard/profile/:id' component={DjProfile}></Route>
         <Route exact path="/dashboard/" render={ ()=> <AvailableDj getUserEvents={this.props.getUserEvents} data={this.props.data} user={this.props.user} artists={this.props.artists} roster={this.props.roster} userRoster={this.props.userRoster} artistRoster={this.props.artistRoster} />}/>
         <Route exact path="/dashboard/createevent" render={ ()=> <AvailableDj getUserEvents={this.props.getUserEvents} data={this.props.data} user={this.props.user} artists={this.props.artists} roster={this.props.roster} userRoster={this.props.userRoster} artistRoster={this.props.artistRoster} />}/>
-      </div>
 
     </div>
     );

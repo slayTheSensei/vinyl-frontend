@@ -20,7 +20,6 @@ import Sidebar_nav from './Sidebar_nav.js'
 import MyEventsList from './views/MyEventsList.js'
 import LandingDash from './views/LandingDash.js'
 import CreateEvent from './views/CreateEvent.js'
-import DjProfile from './views/DjProfile.js'
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -185,7 +184,7 @@ class Dashboard extends React.Component {
             <Route path="/dashboard/myevents" render={({history}) => <MyEventsList getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists}/>}/>
             <Route path="/dashboard/artists" render={() => <ArtistList getUserEvents={this.getUserEvents} data={this.state.artists}/>}/>
             <Route path='/dashboard' render={() => <LandingDash getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} roster={this.state.roster} userRoster={this.state.user_roster} artistRoster={this.state.artist_roster}/> }/>
-
+            
           </Content>
           <Footer style={{
             textAlign: 'center'

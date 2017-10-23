@@ -18,7 +18,7 @@ class AvailableDj extends React.Component {
     );
 
   return(
-      <div>
+    <div style={{ padding: 24, background: '#fff', minHeight: 400, margin: '6px' }}>
       <h1>Available Aritists</h1>
       <Card.Group itemsPerRow={3}>
         {artists}
