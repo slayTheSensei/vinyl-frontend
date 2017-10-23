@@ -20,13 +20,9 @@ const Sidebar_nav = props => {
           <Icon type="pie-chart" />
           <span>Dashboard</span>
         </Link></Menu.Item>
-        <Menu.Item key="2"><Link to={'/dashboard/events'}>
+        <Menu.Item key="2"><Link to={'/dashboard/'}>
           <Icon type="environment-o" />
-          <span>Events</span>
-        </Link></Menu.Item>
-        <Menu.Item key="3"><Link to={'/dashboard/artists'}>
-          <Icon type="user" />
-          <span>Artists</span>
+          <span>Map</span>
         </Link></Menu.Item>
         </Menu>
       </div>

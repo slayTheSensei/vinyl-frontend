@@ -50,7 +50,7 @@ class DjProfile extends React.Component {
             </Row>
             <Divider horizontal>Music</Divider>
             <Row>
-              <Col span={24}>
+              <Col span={24} style={{ margin: '20px' }}>
                 <iframe width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fwheresnasty%2F" frameborder="0" ></iframe>
                 <iframe width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Frubradiobrooklynradio%2F" frameborder="0" ></iframe>
                 <iframe width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fdjemilyrawson%2Fsupa-dupa-fly-mix-90s-hip-hop-rnb-jan-2012-mixed-live-at-supa-dupa-fly%2F" frameborder="0" ></iframe>
