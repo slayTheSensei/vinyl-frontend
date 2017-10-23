@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Image, Button } from 'semantic-ui-react'
 import { Card, Icon, message, Popconfirm, Tooltip } from 'antd'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Route } from 'react-router-dom'
 import axios from 'axios'
+
+import DjProfile from './DjProfile.js'
 
 class Artist extends Component {
 
@@ -106,6 +108,7 @@ class Artist extends Component {
         <h3>{this.props.name}</h3>
           {button}
       </div>
+      <Link to={'/dashboard/profile/' + this.props.artistId }>Profile</Link>
     </Card>
     )
   }

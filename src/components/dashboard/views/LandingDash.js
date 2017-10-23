@@ -7,6 +7,9 @@ import { Route, BrowserRouter, withRouter } from 'react-router-dom'
 
 import Artists from './Artists.js'
 import CreateEvent from './CreateEvent.js'
+import AvailableDj from './AvailableDj.js'
+import DjProfile from './DjProfile.js'
+
 
 class LandingDash extends React.Component {
 
@@ -77,6 +80,7 @@ toCreate = () => {
             </Row>
             <div>
               <Route exact path="/dashboard" render={ () => <EventDash data={this.props.data} render={this.props.getUserEvents} />} />
+              <Route exact path="/dashboard/profile/:id" render={ () => <EventDash data={this.props.data} render={this.props.getUserEvents} />} />
               <Route exact path='/dashboard/createevent' render={ ()=> <CreateEvent getUserEvents={this.props.getUserEvents} user={this.props.user} />} />
             </div>
           </div>
@@ -89,11 +93,11 @@ toCreate = () => {
         </Col>
       </Row>
       <div style={{ padding: 24, background: '#fff', minHeight: 400, margin: '6px' }}>
-        <h1>Available Aritists</h1>
-        <Card.Group itemsPerRow={3}>
-          {artists}
-        </Card.Group>
+        <Route exact path='/dashboard/profile/:id' component={DjProfile}></Route>
+        <Route exact path="/dashboard/" render={ ()=> <AvailableDj getUserEvents={this.props.getUserEvents} data={this.props.data} user={this.props.user} artists={this.props.artists} roster={this.props.roster} userRoster={this.props.userRoster} artistRoster={this.props.artistRoster} />}/>
+        <Route exact path="/dashboard/createevent" render={ ()=> <AvailableDj getUserEvents={this.props.getUserEvents} data={this.props.data} user={this.props.user} artists={this.props.artists} roster={this.props.roster} userRoster={this.props.userRoster} artistRoster={this.props.artistRoster} />}/>
       </div>
+
     </div>
     );
   }
