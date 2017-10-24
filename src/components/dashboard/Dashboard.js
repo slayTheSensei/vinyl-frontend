@@ -8,6 +8,8 @@ import {
   Col,
   Avatar
 } from 'antd';
+
+import { Menu } from 'semantic-ui-react'
 import axios from 'axios'
 
 import {Route, Link, BrowserRouter} from 'react-router-dom'
@@ -169,11 +171,10 @@ class Dashboard extends React.Component {
             padding: 0
           }}>
             <Row>
-              <Col span={22}></Col>
+              <Col span={20}></Col>
               <Col>
-                <p>
-                  <Link to={'/sign-in'}>Sign-In</Link>
-                </p>
+                    <Button inverted>Log in</Button>
+                    <Button inverted style={{ marginLeft: '0.5em' }}>Sign Out</Button>
               </Col>
             </Row>
           </Header>
@@ -184,7 +185,7 @@ class Dashboard extends React.Component {
             <Route path="/dashboard/myevents" render={({history}) => <MyEventsList getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists}/>}/>
             <Route path="/dashboard/artists" render={() => <ArtistList getUserEvents={this.getUserEvents} data={this.state.artists}/>}/>
             <Route path='/dashboard' render={() => <LandingDash getUserEvents={this.getUserEvents} data={this.state.user_events} user={this.props.data.user_id} artists={this.state.artists} roster={this.state.roster} userRoster={this.state.user_roster} artistRoster={this.state.artist_roster}/> }/>
-            
+
           </Content>
           <Footer style={{
             textAlign: 'center'

@@ -6,6 +6,7 @@ import {
   Route,
   withRouter
 } from 'react-router-dom'
+import{ message } from 'antd'
 
 
 
@@ -13,6 +14,7 @@ import {
 import SignUpForm from './components/login/Sign-up.js'
 import SignInForm from './components/login/Sign-in.js'
 import Dashboard from './components/dashboard/Dashboard.js'
+import Landing from './components/login/Landing.js'
 
 class App extends Component {
   constructor(props) {
@@ -30,6 +32,7 @@ class App extends Component {
       token: token,
       user_id: user_id
     })
+    message.success('Signed in')
     next.history.push(`/dashboard`)
   }
 
@@ -38,9 +41,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route exact path="/" render={ () => <SignUpForm />} />
+          <Route exact path="/sign-up" render={ () => <SignUpForm />} />
           <Route path="/sign-in" render={ () => <SignInForm data={this.setToken} />} />
           <Route path="/dashboard" render={ () => <Dashboard data={this.state} />} />
+          <Route exact path='/' component={Landing} />
         </div>
       </BrowserRouter>
     );

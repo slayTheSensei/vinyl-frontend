@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link, withRouter } from 'react-router-dom'
+import { message } from 'antd'
 import { Button, Form, Grid, Header, Image, Loader, Message, Segment } from 'semantic-ui-react'
 class SignInForm extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ onSubmit = () => {
     console.log('het')
   })
   .catch(function (error) {
+    message.error('Invaild Email or Password')
     console.log(error);
   })
 
@@ -96,7 +98,7 @@ onSubmit = () => {
           </Segment>
         </Form>
         <Message>
-          New to us? <Link to='/'>login here</Link>
+          New to us? <Link to='/sign-up'>login here</Link>
         </Message>
       </Grid.Column>
     </Grid>
