@@ -12,7 +12,7 @@ import {
 import { Menu } from 'semantic-ui-react'
 import axios from 'axios'
 
-import {Route, Link, BrowserRouter} from 'react-router-dom'
+import {Route, Link, BrowserRouter, withRouter} from 'react-router-dom'
 
 // importing components
 import ArtistList from './views/ArtistList.js'
@@ -38,30 +38,8 @@ class Dashboard extends React.Component {
       visible: true
     };
 
-    // this.userToken = props.data.token
-    // this.user =  props.data.user_id
-    // this.auth = {
-    //   headers: {
-    //       "Authorization" : 'Token ' + this.userToken
-    //     }
-    //   }
-
     this.getUserEvents = this.getUserEvents.bind(this)
   }
-
-  // getUserEvents() {
-  //   axios.get('https://vinyl-backend-api.herokuapp.com/users/' + this.user, this.auth)
-  //     .then(response => {
-  //     this.setState({
-  //       user_events: response.data.user.events
-  //     })
-  //     console.log(response.data.user.user_events)
-  //
-  //   })
-  //   .catch(error => {
-  //     console.log('Error fetching and parsing data', error)
-  //   })
-  // }
 
   // API calls are done in componentDidMount
   getUserEvents() {
@@ -85,7 +63,7 @@ class Dashboard extends React.Component {
     axios.get('https://vinyl-backend-api.herokuapp.com/users/' + user, auth).then(response => {
       this.setState({roster: response.data.user.artists})
       this.setState({user_roster: response.data.user.rosters[0]})
-      console.log(response.data.user.artists)
+      console.log(response.data.user.rosters)
 
     }).catch(error => {
       console.log('Error fetching and parsing data', error)
@@ -122,9 +100,14 @@ class Dashboard extends React.Component {
     this.getUserEvents()
   }
 
+  toLogin = () => {
+    this.props.history.push(`/sign-in`)
+  }
+
   // Sign Out
   signOut = () => {
     let self = this
+    console.log(this)
 
     let userToken = this.props.data.token
 
@@ -139,16 +122,25 @@ class Dashboard extends React.Component {
 
     axios.delete('https://vinyl-backend-api.herokuapp.com/sign-out/' + user, auth).then(response => {
       console.log(response)
+      console.log(self.props.data.token)
+      this.props.history.push(`/sign-in`)
     }).catch(error => {
       console.log('Error fetching and parsing data', error)
     })
   }
 
-  toggleVisibility = () => this.setState({
-    visible: !this.state.visible
-  })
+  render(props) {
 
-  render() {
+  // Redirects to login if not signed in
+    let button = null
+    if (this.props.data.token) {
+        button =
+      <Button inverted onClick={this.signOut}>Sign Out</Button>
+    } else {
+      this.toLogin()
+      //   button =
+      // <Button inverted style={{ marginLeft: '0.5em' }} onClick={this.toLogin}>Log in</Button>
+    }
 
     return (
       <Layout style={{
@@ -173,8 +165,7 @@ class Dashboard extends React.Component {
             <Row>
               <Col span={20}></Col>
               <Col>
-                    <Button inverted>Log in</Button>
-                    <Button inverted style={{ marginLeft: '0.5em' }}>Sign Out</Button>
+                {button}
               </Col>
             </Row>
           </Header>
@@ -198,4 +189,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard
+export default withRouter(Dashboard)
