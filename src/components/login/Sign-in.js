@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link, withRouter } from 'react-router-dom'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Loader, Message, Segment } from 'semantic-ui-react'
 class SignInForm extends Component {
   constructor(props) {
   super(props)
@@ -92,6 +92,7 @@ onSubmit = () => {
             />
 
           <Button color='teal' fluid size='large' onClick={() => this.onSubmit()}>Login</Button>
+          <Loader inverted content='Loading' />
           </Segment>
         </Form>
         <Message>
