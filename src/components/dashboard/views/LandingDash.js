@@ -33,17 +33,6 @@ toCreate = () => {
       title: 'Location',
       dataIndex: 'location',
       key: 'location',
-    }, {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <span>
-          <Popconfirm title="Are you sure delete this artist?" onConfirm={artistConfirm} onCancel={artistCancel} okText="Yes" cancelText="No" artist={text} art={record} render={this.props.getUserEvents}>
-          <a href="">Remove</a>
-          </Popconfirm>
-
-        </span>
-      ),
     }];
 
     const results = this.props.artists;

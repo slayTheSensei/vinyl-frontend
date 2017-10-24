@@ -19,11 +19,13 @@ class EventDash extends React.Component {
     title: 'Venue',
     dataIndex: 'venue',
     key: 'venue',
-    }, {
-    title: 'Date',
-    dataIndex: 'date',
-    key: 'date',
-  }, {
+    },
+  //   {
+  //   title: 'Date',
+  //   dataIndex: 'date',
+  //   key: 'date',
+  // },
+  {
     title: 'Action',
     key: 'action',
     render: (text, record) => (

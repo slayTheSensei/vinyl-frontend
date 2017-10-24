@@ -3,6 +3,9 @@ import { Form, Header, Segment, Button, Image} from 'semantic-ui-react'
 import { message } from 'antd'
 import axios from 'axios'
 import { withRouter, Link } from 'react-router-dom'
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 
 class CreateEvent extends Component {
@@ -11,10 +14,11 @@ class CreateEvent extends Component {
       this.state = {
         name: '',
         venue: '',
-        date: ''
+        Startdate: moment()
     }
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+    this.pickDate = this.pickDate.bind(this)
     }
 
     // listens for changes and field and changes state
@@ -24,12 +28,20 @@ class CreateEvent extends Component {
       })
     }
 
+    pickDate = (date) => {
+      this.setState({
+        startDate: date
+      })
+      console.log(this.state)
+    }
+
     onSubmit = () => {
       let self = this
       let data = {
         event: {
           name: this.state.name,
-          venue: this.state.venue
+          venue: this.state.venue,
+          date: this.state.startDate
         }
       }
       axios.post('https://vinyl-backend-api.herokuapp.com/events/', data)
@@ -76,11 +88,13 @@ class CreateEvent extends Component {
               width={16} />
           </Form.Group>
           <Form.Group>
-            <Form.Input
+            <DatePicker
               name='date'
+              dateFormat="MM/DD/YY"
               placeholder='Date'
-              onChange={e => this.onChange(e)}
-              value={this.state.date}
+              onChange={this.pickDate}
+              selected={this.state.startDate}
+              value={this.state.startDate}
               width={16} />
           </Form.Group>
           <Button color='blue' fluid size='large' style={{ margin: '15px 0' }} onClick={() => this.onSubmit()}>Create</Button>
